@@ -15,6 +15,9 @@ namespace Lab05EmilioBarillas1150620 {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
+
+		ListaBaraja^ MiListaBaraja = gcnew ListaBaraja();
+
 		MyForm(void)
 		{
 			InitializeComponent();
@@ -72,19 +75,7 @@ namespace Lab05EmilioBarillas1150620 {
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 
-		ListaBaraja^ Baraja = gcnew ListaBaraja();
-
-		for (int i = 0; i < 13; i++)
-		{
-			Baraja->InsertarNuevo(i + 1, true);
-			Baraja->InsertarNuevo(i + 1, false);
-			Baraja->InsertarNuevo(i + 1, true);
-			Baraja->InsertarNuevo(i + 1, false);
-		}
-
-
-
-	
+		
 
 	}
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
