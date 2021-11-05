@@ -14,7 +14,7 @@ void ListaBaraja::InsertarNuevo(int valor, String^ color)
 
 void ListaBaraja::InsertarNuevo(int valor, String^ color, int index)
 {
-	if (index = 0)
+	if (index == 0)
 	{
 		InsertarNuevo(valor, color);
 	}
@@ -78,4 +78,17 @@ bool ListaBaraja::Eliminar(int valor, String^ color)
 	}
 	delete(Actual);
 	return true;
+}
+
+String^ ListaBaraja::Recorrer()
+{
+		Carta^ Recorrer = gcnew Carta();
+		String^ Datos;
+		Recorrer = Cabeza;
+		while (Recorrer != nullptr)
+		{
+			Datos += Recorrer->Valor + "-" + Recorrer->Color + "\n";
+			Recorrer = Recorrer->Siguiente;
+		}
+		return Datos;
 }

@@ -13,6 +13,7 @@ public:
 	void InsertarNuevo(int valor, String^ color, int index);
 	int Buscar(int valor, String^ color);
 	bool Eliminar(int valor, String^ color);
+	String^ Recorrer();
 
 };
 

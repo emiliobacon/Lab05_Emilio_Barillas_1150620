@@ -9,6 +9,7 @@ namespace Lab05EmilioBarillas1150620 {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+	
 	/// <summary>
 	/// Resumen de MyForm
 	/// </summary>
@@ -21,9 +22,7 @@ namespace Lab05EmilioBarillas1150620 {
 		MyForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: agregar código de constructor aquí
-			//
+			
 		}
 
 	protected:
@@ -37,6 +36,8 @@ namespace Lab05EmilioBarillas1150620 {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Label^ label1;
+	protected:
 
 	protected:
 
@@ -57,25 +58,58 @@ namespace Lab05EmilioBarillas1150620 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(364, 129);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"label1";
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(725, 355);
+			this->Controls->Add(this->label1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::MyForm_KeyPress);
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	void LlenarListaBaraja()
+		{
+			for (size_t i = 0; i < 13; i++)
+			{
+				MiListaBaraja->InsertarNuevo(i+1, "R");
+			}
+			for (size_t i = 0; i < 13; i++)
+			{
+				MiListaBaraja->InsertarNuevo(i + 1, "R");
+			}
+			for (size_t i = 0; i < 13; i++)
+			{
+				MiListaBaraja->InsertarNuevo(i + 1, "N");
+			}
+			for (size_t i = 0; i < 13; i++)
+			{
+				MiListaBaraja->InsertarNuevo(i + 1, "N");
+			}
+		}
 
-		
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		LlenarListaBaraja();
+		label1->Text = MiListaBaraja->Recorrer();
+
 
 	}
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
@@ -86,4 +120,7 @@ namespace Lab05EmilioBarillas1150620 {
 		
 	}
 	};
+
+
+
 }
