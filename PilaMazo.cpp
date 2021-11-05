@@ -43,3 +43,39 @@ bool PilaMazo::PilaVacia()
 		return false;
 	}
 }
+
+int PilaMazo::Size()
+{
+	int Cantidad = 0;
+	for (Carta^ i = Cabeza; i != nullptr; i = i->Siguiente)
+	{
+		Cantidad++;
+	}
+	return Cantidad;
+}
+
+String^ PilaMazo::Peek()
+{
+	if (!PilaVacia())
+	{
+		String^ Retorno = Cabeza->Valor + " " + Cabeza->Color;
+		return Retorno;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+String^ PilaMazo::Recorrer()
+{
+	Carta^ Recorrer = gcnew Carta();
+	String^ Datos;
+	Recorrer = Cabeza;
+	while (Recorrer != nullptr)
+	{
+		Datos += Recorrer->Valor + "-" + Recorrer->Color + "\n";
+		Recorrer = Recorrer->Siguiente;
+	}
+	return Datos;
+}

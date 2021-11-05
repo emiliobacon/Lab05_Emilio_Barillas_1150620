@@ -9,11 +9,10 @@ public:
 	void Limpiar();
 	Carta^ Quitar();
 	bool PilaVacia();
-
-
 	int Size();
 	String^ Peek();
 	String^ Recorrer();
-	String^ Imprimir();
+
+	
 };
 

@@ -62,6 +62,20 @@ int ListaBaraja::Buscar(int valor, String^ color)
 	return -1;
 }
 
+int ListaBaraja::Buscar(int valor)
+{
+	int count = 0;
+	for (Carta^ indice = Cabeza; indice != nullptr; indice = indice->Siguiente)
+	{
+		if (indice->Valor == valor)
+		{
+			return count;
+		}
+		count++;
+	}
+	return -1;
+}
+
 bool ListaBaraja::Eliminar(int valor, String^ color)
 {
 	Carta^ Actual = Cabeza;
@@ -103,10 +117,10 @@ String^ ListaBaraja::Recorrer()
 		return Datos;
 }
 
-Carta^ ListaBaraja::Eliminar2(int valor, String^ color)
+Carta^ ListaBaraja::Eliminar2(int valor)
 {
 	Carta^ Actual = Cabeza;
-	int Indice = Buscar(valor, color);
+	int Indice = Buscar(valor);
 	if (Indice == -1)
 	{
 		return nullptr;
