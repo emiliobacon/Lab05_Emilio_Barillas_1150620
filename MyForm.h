@@ -1,8 +1,10 @@
 #pragma once
 #include "ListaBaraja.h"
 #include "PilaMazo.h"
-#include <stdlib.h>
-#include <time.h>
+#include <ctime>
+#include<stdlib.h>
+#include<time.h>
+#include "Carta.h"
 
 namespace Lab05EmilioBarillas1150620 {
 
@@ -12,6 +14,7 @@ namespace Lab05EmilioBarillas1150620 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace std;
 
 	
 	/// <summary>
@@ -38,6 +41,9 @@ namespace Lab05EmilioBarillas1150620 {
 		PilaMazo^ Grupo4 = gcnew PilaMazo();
 		PilaMazo^ Grupo5 = gcnew PilaMazo();
 		PilaMazo^ Grupo6 = gcnew PilaMazo();
+	private: System::Windows::Forms::Button^ button1;
+
+	public:
 		PilaMazo^ Grupo7 = gcnew PilaMazo();
 		MyForm(void)
 		{
@@ -87,6 +93,7 @@ namespace Lab05EmilioBarillas1150620 {
 			this->lblGrupo6 = (gcnew System::Windows::Forms::Label());
 			this->lblGrupo5 = (gcnew System::Windows::Forms::Label());
 			this->lblGrupo7 = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -170,11 +177,22 @@ namespace Lab05EmilioBarillas1150620 {
 			this->lblGrupo7->TabIndex = 8;
 			this->lblGrupo7->Text = L"label9";
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(223, 274);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 9;
+			this->button1->Text = L"button1";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(725, 355);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->lblGrupo7);
 			this->Controls->Add(this->lblGrupo6);
 			this->Controls->Add(this->lblGrupo5);
@@ -215,7 +233,20 @@ namespace Lab05EmilioBarillas1150620 {
 		}
 	void LlenaPilaMazo()
 	{
-		
+		srand(time(NULL));
+		int numero; 
+
+		while (!MiListaBaraja->ListaVacia())
+		{
+			numero = rand() % 14;
+			Carta^ Dato = gcnew Carta();
+			Dato = MiListaBaraja->Eliminar2(numero);
+
+			if (Dato != nullptr)
+			{
+				MiPilaMazo->Insertar(Dato);
+			}	
+		}
 	}
 	void Actualizar()
 	{
@@ -231,9 +262,9 @@ namespace Lab05EmilioBarillas1150620 {
 
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		LlenarListaBaraja();
-		LlenaPilaMazo();
-		label1->Text = MiPilaMazo->Recorrer();
+		
 		label2->Text = MiListaBaraja->Recorrer();
+		label1->Text = MiPilaMazo->Recorrer();
 
 
 	}
@@ -244,7 +275,13 @@ namespace Lab05EmilioBarillas1150620 {
 
 		
 	}
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+		LlenaPilaMazo();
+		label2->Text = MiListaBaraja->Recorrer();
+		label1->Text = MiPilaMazo->Recorrer();
+	}
+};
 
 
 

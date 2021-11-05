@@ -142,3 +142,15 @@ Carta^ ListaBaraja::Eliminar2(int valor)
 	delete(Actual);
 	return Actual;
 }
+
+bool ListaBaraja::ListaVacia()
+{
+	if (Cabeza == nullptr && Cola == nullptr)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+
+

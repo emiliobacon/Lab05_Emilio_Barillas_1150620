@@ -17,6 +17,8 @@ public:
 	bool Eliminar(int valor, String^ color);
 	String^ Recorrer();
 	Carta^ Eliminar2(int valor);
+	
+	bool ListaVacia();
 
 };
 
