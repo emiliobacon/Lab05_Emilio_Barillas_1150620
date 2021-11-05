@@ -1,10 +1,13 @@
 #pragma once
+using namespace System;
+
 ref class Carta
 {
 public:
 	int Valor;
-	bool color; 
-	bool mostrar;
+	String^ Color; 
+	bool Mostrar;
+
 	Carta^ Siguiente;
 };
 
