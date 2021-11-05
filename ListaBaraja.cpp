@@ -6,8 +6,16 @@ void ListaBaraja::InsertarNuevo(int valor, String^ color)
 	Carta^ Nuevo = gcnew Carta();
 	Nuevo->Valor = valor;
 	Nuevo->Color = color;
-	Nuevo->Mostrar = false; 
+	Nuevo->Mostrar = 0; 
 	
+	Nuevo->Siguiente = Cabeza;
+	Cabeza = Nuevo;
+}
+
+void ListaBaraja::InsertarNodo(Carta^ nodo)
+{
+	Carta^ Nuevo = gcnew Carta();
+	Nuevo = nodo;
 	Nuevo->Siguiente = Cabeza;
 	Cabeza = Nuevo;
 }
@@ -87,8 +95,36 @@ String^ ListaBaraja::Recorrer()
 		Recorrer = Cabeza;
 		while (Recorrer != nullptr)
 		{
-			Datos += Recorrer->Valor + "-" + Recorrer->Color + "\n";
-			Recorrer = Recorrer->Siguiente;
+			
+				Datos += Recorrer->Valor + "-" + Recorrer->Color + "\n";
+				Recorrer = Recorrer->Siguiente;
+			
 		}
 		return Datos;
+}
+
+Carta^ ListaBaraja::Eliminar2(int valor, String^ color)
+{
+	Carta^ Actual = Cabeza;
+	int Indice = Buscar(valor, color);
+	if (Indice == -1)
+	{
+		return nullptr;
+	}
+	else if (Indice == 0)
+	{
+		Cabeza = Cabeza->Siguiente;
+	}
+	else
+	{
+		Carta^ Anterior = Cabeza;
+		for (int i = 0; i < Indice; i++)
+		{
+			Anterior = Actual;
+			Actual = Actual->Siguiente;
+		}
+		Anterior->Siguiente = Actual->Siguiente;
+	}
+	delete(Actual);
+	return Actual;
 }

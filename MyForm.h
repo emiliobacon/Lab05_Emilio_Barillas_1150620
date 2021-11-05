@@ -1,5 +1,9 @@
 #pragma once
 #include "ListaBaraja.h"
+#include "PilaMazo.h"
+#include <stdlib.h>
+#include <time.h>
+
 namespace Lab05EmilioBarillas1150620 {
 
 	using namespace System;
@@ -18,6 +22,8 @@ namespace Lab05EmilioBarillas1150620 {
 	public:
 
 		ListaBaraja^ MiListaBaraja = gcnew ListaBaraja();
+		PilaMazo^ MiPilaMazo = gcnew PilaMazo();
+		ListaBaraja^ eliminadas = gcnew ListaBaraja();
 
 		MyForm(void)
 		{
@@ -106,9 +112,12 @@ namespace Lab05EmilioBarillas1150620 {
 			}
 		}
 
+
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		LlenarListaBaraja();
-		label1->Text = MiListaBaraja->Recorrer();
+		eliminadas->InsertarNodo(MiListaBaraja->Eliminar2(2, "N"));
+
+		label1->Text = eliminadas->Recorrer();
 
 
 	}
